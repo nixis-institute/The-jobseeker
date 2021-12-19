@@ -1,0 +1,57 @@
+
+<style>
+._main_{
+    margin: auto;
+    text-align: center;
+    width: 659px;
+}
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+    <title>Document</title>
+</head>
+<body>
+        <!-- <h3>JobSeeker</h3> -->
+        <div class="container p-3 my-3 bg-dark text-white" style="border-radius: 20px;">
+            <div style="font-size: 30px;">
+                <h2>JobSeeker</h2>
+            </div>
+        </div>
+        <form action="/contain/" method="post" style="margin-top: 45px;">
+            {% csrf_token %}
+            <div style="text-align: center;" class="_main_">
+                <input type="text" name="name" class="form-control" placeholder="name" required>
+                <br>
+                <input type="text" name="add" class="form-control" placeholder="Adress" required>
+                <br>
+                <input type="text" name="cnt" class="form-control" placeholder="contact" required>
+                <br>
+                <input type="text" name="email" class="form-control" placeholder="E-mail" required>
+                <br>
+                <input type="text" name="org" class="form-control" placeholder="Organizations name" required>
+                <br>
+                <select name="expt" aria-placeholder="Experience" class="form-control">Experience
+                    <option>Experience</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>More then five years</option>
+                </select>
+                <!-- <input type="text" name="expt" placeholder="Organizations name" required> -->
+                <br>
+                <textarea cols="30" rows="4" placeholder="All jobs" class="form-control" name="jbs" required autofocus="autofocus"></textarea>
+                <br>
+                <input type="submit" class="btn-Primary" value="Submit" style="width: 100px;height: 46px;border-radius: 6px;">
+            </div>
+        </form>
+</body>
+</html>

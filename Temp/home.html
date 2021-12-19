@@ -1,0 +1,144 @@
+<style>
+
+._title_{
+    text-align: center;
+    /* margin-top: 3px auto; */
+    margin: 20px auto;
+    font-size: 27px;background-color: teal;
+}
+._contain_{
+    width: 980px;
+    margin: auto;
+    border: 2px solid grey;
+    height: 113px;
+    border-radius: 10px;
+    margin: 20px auto;
+    box-shadow: 0px 0px 3px yellow;
+}
+.brd{
+    padding: 7px;
+    color: black;
+    font-weight: bolder;
+    line-height: 8px;
+}
+a{
+    text-decoration: none;
+}
+
+._find_{
+    font-size: 40px;
+    
+}
+</style>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+
+    <title>Home page</title>
+</head>
+<body bgcolor="whitesmoke">
+    <div>
+
+                {% block content %}
+        <div class="container p-3 my-3 bg-info text-white" style="border-radius: 20px;">
+                <div style="font-size: 30px;">
+                    <h2>JobSeeker</h2>
+                </div>
+                {% endblock %}
+            <div>
+                <div>
+                    <table style="font-size: 21px;font-weight: bold;margin: auto;">
+                        <tr>
+                            {% if user.is_authenticated %}
+                            <!-- <td>logout</td> -->
+                            <td><a href="/logout/">Logout</a></td>
+                            
+                            <td>Profile</td>
+                            <td><a href="/create/">Create jobs</a></td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <!-- <td>login</td> -->
+                            <td><a href="/login_page/">Login</a></td>
+                            <td>Profile</td>
+                            <td><a href="/create/">Create jobs</a></td>
+                        </tr>
+                            {% endif %}
+                    </table>
+                </div>
+
+                <div style="margin-top: 23px;border: 2px solid blue;border-radius: 10px"> 
+                    <div class="_find_">
+                        <h2 style="font-size: 52px;">
+                            <center>
+                                Find your Job
+                            </center>
+
+                        </h2>
+                    </div>  
+                    <div>
+                        <form action="/search/" method="POST" style="text-align: center;">
+                            {% csrf_token %}
+                            <input  type="search" name="search" placeholder="Search">
+                            <input type="submit" value="Submit">
+                        </form>
+                    </div>
+                </div>               
+            </div>
+        </div>
+    {% if data %}
+        <div style="margin-top: 37px;">
+            {% for i in data %}
+            <div class="_contain_">
+                <a href="/details/{{i.id}}/">
+                    <div class="brd">
+                        <h2 style="font-size: 25px;padding: 5px;"> {{i.jobs}} </h2>
+                        <div>
+                            <p class="taarg1">{{i.tm}}</p> 
+                        </div>
+                    </div>
+                </a>
+                </div>
+            {% endfor %}
+            </div> 
+    {% else %}
+        
+    <div style="margin-top: 37px;">
+        {% for i in T1 %}
+        <div class="_contain_">
+            <a href="/details/{{i.id}}/">
+                <div class="brd">
+                    <h2 style="font-size: 25px;padding: 5px;"> {{i.jobs}} </h2>
+                    <div>
+                        <p class="tag1">{{i.tm}}</p>
+                    </div>
+                </div>
+            </a>
+            </div>
+        {% endfor %}
+    {% endif %}
+    </div>    
+
+    </div>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
